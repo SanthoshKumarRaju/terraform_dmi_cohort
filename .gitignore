@@ -1,0 +1,16 @@
+# Terraform state files
+*.tfstate
+*.tfstate.backup
+
+# .terraform directory
+.terraform/
+
+# Terraform plan output
+*.tfplan
+
+# Terraform lock file (optional but recommended for teams)
+.terraform.lock.hcl
+
+# Local override files (if any)
+override.tf
+override.tf.json
