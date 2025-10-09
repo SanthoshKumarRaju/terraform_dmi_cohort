@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog 1 - Foundation Projects | Terraform Blog</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Source+Code+Pro:wght@300;400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="index.html" style="text-decoration: none; color: inherit;">
+                    <h2>Terraform<span class="logo-accent">Blog</span></h2>
+                </a>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="index.html" class="nav-link">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a href="index.html#terraform-history" class="nav-link">History</a>
+                </li>
+                <li class="nav-item">
+                    <a href="index.html#harshi-corp" class="nav-link">Harshi Corp</a>
+                </li>
+                <li class="nav-item">
+                    <a href="blog1.html" class="nav-link nav-button">Blog 1</a>
+                </li>
+                <li class="nav-item">
+                    <a href="blog2.html" class="nav-link nav-button">Blog 2</a>
+                </li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Blog 1 Header -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content" style="text-align: center; max-width: 800px; margin: 0 auto;">
+                <h1 class="hero-title">Blog 1: <span class="terraform-gradient">Foundation Projects</span></h1>
+                <p class="hero-subtitle">
+                    Master the fundamentals of Terraform with Azure authentication and multi-cloud deployments. 
+                    These projects form the foundation for advanced infrastructure automation.
+                </p>
+                <div class="hero-buttons" style="justify-content: center;">
+                    <a href="#project1" class="btn btn-primary">Project 1</a>
+                    <a href="#project2" class="btn btn-secondary">Project 2</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Project 1: Azure Service Principal -->
+    <section id="project1" class="section-dark">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Project 1: Azure Service Principal Authentication</h2>
+                <p class="section-subtitle">Secure authentication for Azure resources using Service Principals</p>
+            </div>
+
+            <div class="project-content">
+                <div class="project-overview">
+                    <h3>Overview</h3>
+                    <p>This project demonstrates how to authenticate Terraform with Azure using Service Principals with Client Secrets, providing secure access to Azure resources without interactive login.</p>
+                    
+                    <div class="project-features">
+                        <h4>Key Features</h4>
+                        <ul class="feature-list">
+                            <li>Service Principal creation and configuration</li>
+                            <li>Client Secret authentication</li>
+                            <li>Role-based access control (RBAC)</li>
+                            <li>Secure credential management</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="file-structure">
+                    <h3>File Structure</h3>
+                    <div class="code-window">
+                        <div class="window-header">
+                            <div class="window-controls">
+                                <span class="control red"></span>
+                                <span class="control yellow"></span>
+                                <span class="control green"></span>
+                            </div>
+                            <span class="window-title">project-structure</span>
+                        </div>
+                        <div class="code-content">
+                            <pre><code>azure-service-principal/
+├── main.tf
+├── variables.tf
+├── outputs.tf
+├── providers.tf
+├── terraform.tfvars.example
+├── cloud-init.yaml
+└── README.md</code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="code-samples">
+                    <h3>Implementation Code</h3>
+                    
+                    <div class="code-sample">
+                        <h4>providers.tf</h4>
+                        <div class="code-window">
+                            <div class="window-header">
+                                <div class="window-controls">
+                                    <span class="control red"></span>
+                                    <span class="control yellow"></span>
+                                    <span class="control green"></span>
+                                </div>
+                                <span class="window-title">providers.tf</span>
+                            </div>
+                            <div class="code-content">
+                                <pre><code>terraform {
+  required_version = ">= 1.0"
+  required_providers {
+    azurerm = {
+      source  = "hashicorp/azurerm"
+      version = "~> 3.0"
+    }
+  }
+}
+
+provider "azurerm" {
+  features {}
+
+  subscription_id = var.subscription_id
+  client_id       = var.client_id
+  client_secret   = var.client_secret
+  tenant_id       = var.tenant_id
+}</code></pre>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="code-sample">
+                        <h4>variables.tf</h4>
+                        <div class="code-window">
+                            <div class="window-header">
+                                <div class="window-controls">
+                                    <span class="control red"></span>
+                                    <span class="control yellow"></span>
+                                    <span class="control green"></span>
+                                </div>
+                                <span class="window-title">variables.tf</span>
+                            </div>
+                            <div class="code-content">
+                                <pre><code>variable "subscription_id" {
+  description = "Azure Subscription ID"
+  type        = string
+  sensitive   = true
+}
+
+variable "client_id" {
+  description = "Azure Service Principal App ID"
+  type        = string
+  sensitive   = true
+}
+
+variable "client_secret" {
+  description = "Azure Service Principal Client Secret"
+  type        = string
+  sensitive   = true
+}
+
+variable "tenant_id" {
+  description = "Azure Tenant ID"
+  type        = string
+  sensitive   = true
+}
+
+variable "resource_group_name" {
+  description = "Name of the resource group"
+  type        = string
+  default     = "tf-service-principal-rg"
+}
+
+variable "location" {
+  description = "Azure region"
+  type        = string
+  default     = "East US"
+}</code></pre>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="code-sample">
+                        <h4>main.tf</h4>
+                        <div class="code-window">
+                            <div class="window-header">
+                                <div class="window-controls">
+                                    <span class="control red"></span>
+                                    <span class="control yellow"></span>
+                                    <span class="control green"></span>
+                                </div>
+                                <span class="window-title">main.tf</span>
+                            </div>
+                            <div class="code-content">
+                                <pre><code># Create Resource Group
+resource "azurerm_resource_group" "main" {
+  name     = var.resource_group_name
+  location = var.location
+
+  tags = {
+    environment = "demo"
+    project     = "service-principal-auth"
+  }
+}
+
+# Create Virtual Network
+resource "azurerm_virtual_network" "main" {
+  name                = "vnet-main"
+  address_space       = ["10.0.0.0/16"]
+  location            = azurerm_resource_group.main.location
+  resource_group_name = azurerm_resource_group.main.name
+
+  tags = {
+    environment = "demo"
+  }
+}
+
+# Create Subnet
+resource "azurerm_subnet" "internal" {
+  name                 = "subnet-internal"
+  resource_group_name  = azurerm_resource_group.main.name
+  virtual_network_name = azurerm_virtual_network.main.name
+  address_prefixes     = ["10.0.1.0/24"]
+}
+
+# Create Network Security Group
+resource "azurerm_network_security_group" "main" {
+  name                = "nsg-main"
+  location            = azurerm_resource_group.main.location
+  resource_group_name = azurerm_resource_group.main.name
+
+  security_rule {
+    name                       = "SSH"
+    priority                   = 1001
+    direction                  = "Inbound"
+    access                     = "Allow"
+    protocol                   = "Tcp"
+    source_port_range          = "*"
+    destination_port_range     = "22"
+    source_address_prefix      = "*"
+    destination_address_prefix = "*"
+  }
+
+  tags = {
+    environment = "demo"
+  }
+}</code></pre>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="deployment-steps">
+                    <h3>Deployment Steps</h3>
+                    <div class="steps">
+                        <div class="step">
+                            <h4>Step 1: Create Service Principal</h4>
+                            <div class="command-example">
+                                <code>az ad sp create-for-rbac --name "terraform-sp" --role Contributor</code>
+                            </div>
+                        </div>
+                        <div class="step">
+                            <h4>Step 2: Configure Environment Variables</h4>
+                            <div class="code-window">
+                                <div class="window-header">
+                                    <div class="window-controls">
+                                        <span class="control red"></span>
+                                        <span class="control yellow"></span>
+                                        <span class="control green"></span>
+                                    </div>
+                                    <span class="window-title">Environment Setup</span>
+                                </div>
+                                <div class="code-content">
+                                    <pre><code>export ARM_SUBSCRIPTION_ID="your-subscription-id"
+export ARM_CLIENT_ID="your-client-id"
+export ARM_CLIENT_SECRET="your-client-secret"
+export ARM_TENANT_ID="your-tenant-id"</code></pre>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="step">
+                            <h4>Step 3: Terraform Deployment</h4>
+                            <div class="command-example">
+                                <code>terraform init</code>
+                                <span class="command-desc">- Initialize Terraform</span>
+                            </div>
+                            <div class="command-example">
+                                <code>terraform plan</code>
+                                <span class="command-desc">- Review deployment plan</span>
+                            </div>
+                            <div class="command-example">
+                                <code>terraform apply</code>
+                                <span class="command-desc">- Apply configuration</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Project 2: Multi-Cloud Deployment -->
+    <section id="project2" class="section-light">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Project 2: Multi-Cloud + Multi-Region Deployment</h2>
+                <p class="section-subtitle">Deploy infrastructure across AWS and Azure in multiple regions</p>
+            </div>
+
+            <div class="project-content">
+                <div class="project-overview">
+                    <h3>Overview</h3>
+                    <p>This advanced project demonstrates how to deploy infrastructure across multiple cloud providers (AWS and Azure) and multiple regions, showcasing Terraform's multi-cloud capabilities.</p>
+                    
+                    <div class="project-features">
+                        <h4>Key Features</h4>
+                        <ul class="feature-list">
+                            <li>Multi-provider configuration (AWS + Azure)</li>
+                            <li>Cross-region deployments</li>
+                            <li>Modular architecture</li>
+                            <li>Shared networking configuration</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="file-structure">
+                    <h3>File Structure</h3>
+                    <div class="code-window">
+                        <div class="window-header">
+                            <div class="window-controls">
+                                <span class="control red"></span>
+                                <span class="control yellow"></span>
+                                <span class="control green"></span>
+                            </div>
+                            <span class="window-title">project-structure</span>
+                        </div>
+                        <div class="code-content">
+                            <pre><code>multi-cloud-deployment/
+├── modules/
+│   ├── azure-vm/
+│   │   ├── main.tf
+│   │   ├── variables.tf
+│   │   └── outputs.tf
+│   ├── aws-ec2/
+│   │   ├── main.tf
+│   │   ├── variables.tf
+│   │   └── outputs.tf
+│   └── shared/
+│       ├── main.tf
+│       └── variables.tf
+├── main.tf
+├── providers.tf
+├── variables.tf
+├── outputs.tf
+├── terraform.tfvars.example
+└── README.md</code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="code-samples">
+                    <h3>Implementation Code</h3>
+                    
+                    <div class="code-sample">
+                        <h4>providers.tf</h4>
+                        <div class="code-window">
+                            <div class="window-header">
+                                <div class="window-controls">
+                                    <span class="control red"></span>
+                                    <span class="control yellow"></span>
+                                    <span class="control green"></span>
+                                </div>
+                                <span class="window-title">providers.tf</span>
+                            </div>
+                            <div class="code-content">
+                                <pre><code>terraform {
+  required_version = ">= 1.0"
+  required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+      version = "~> 5.0"
+    }
+    azurerm = {
+      source  = "hashicorp/azurerm"
+      version = "~> 3.0"
+    }
+  }
+}
+
+# AWS Provider - Multiple Regions
+provider "aws" {
+  region = var.aws_primary_region
+  alias  = "primary"
+}
+
+provider "aws" {
+  region = var.aws_secondary_region
+  alias  = "secondary"
+}
+
+# Azure Provider - Multiple Regions
+provider "azurerm" {
+  features {}
+  subscription_id = var.azure_subscription_id
+  client_id       = var.azure_client_id
+  client_secret   = var.azure_client_secret
+  tenant_id       = var.azure_tenant_id
+  alias           = "primary"
+}
+
+provider "azurerm" {
+  features {}
+  subscription_id = var.azure_subscription_id
+  client_id       = var.azure_client_id
+  client_secret   = var.azure_client_secret
+  tenant_id       = var.azure_tenant_id
+  alias           = "secondary"
+}</code></pre>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="code-sample">
+                        <h4>main.tf</h4>
+                        <div class="code-window">
+                            <div class="window-header">
+                                <div class="window-controls">
+                                    <span class="control red"></span>
+                                    <span class="control yellow"></span>
+                                    <span class="control green"></span>
+                                </div>
+                                <span class="window-title">main.tf</span>
+                            </div>
+                            <div class="code-content">
+                                <pre><code># AWS Primary Region Resources
+module "aws_primary" {
+  source = "./modules/aws-ec2"
+
+  providers = {
+    aws = aws.primary
+  }
+
+  environment    = var.environment
+  instance_type  = var.aws_instance_type
+  instance_count = var.aws_instance_count
+  vpc_cidr       = var.aws_vpc_cidr_primary
+  region         = var.aws_primary_region
+}
+
+# AWS Secondary Region Resources
+module "aws_secondary" {
+  source = "./modules/aws-ec2"
+
+  providers = {
+    aws = aws.secondary
+  }
+
+  environment    = var.environment
+  instance_type  = var.aws_instance_type
+  instance_count = var.aws_instance_count
+  vpc_cidr       = var.aws_vpc_cidr_secondary
+  region         = var.aws_secondary_region
+}
+
+# Azure Primary Region Resources
+module "azure_primary" {
+  source = "./modules/azure-vm"
+
+  providers = {
+    azurerm = azurerm.primary
+  }
+
+  environment          = var.environment
+  vm_size              = var.azure_vm_size
+  instance_count       = var.azure_instance_count
+  resource_group_name  = "${var.environment}-rg-primary"
+  location            = var.azure_primary_region
+  vnet_address_space  = var.azure_vnet_cidr_primary
+}
+
+# Azure Secondary Region Resources
+module "azure_secondary" {
+  source = "./modules/azure-vm"
+
+  providers = {
+    azurerm = azurerm.secondary
+  }
+
+  environment          = var.environment
+  vm_size              = var.azure_vm_size
+  instance_count       = var.azure_instance_count
+  resource_group_name  = "${var.environment}-rg-secondary"
+  location            = var.azure_secondary_region
+  vnet_address_space  = var.azure_vnet_cidr_secondary
+}
+
+# Shared Resources (Load Balancers, DNS, etc.)
+module "shared" {
+  source = "./modules/shared"
+
+  aws_primary_instances   = module.aws_primary.instance_ips
+  aws_secondary_instances = module.aws_secondary.instance_ips
+  azure_primary_instances = module.azure_primary.instance_ips
+  azure_secondary_instances = module.azure_secondary.instance_ips
+
+  domain_name = var.domain_name
+}</code></pre>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="navigation-buttons" style="text-align: center; margin-top: 3rem;">
+                    <a href="index.html" class="btn btn-primary">Back to Home</a>
+                    <a href="blog2.html" class="btn btn-secondary">Go to Blog 2</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="assets/js/script.js"></script>
+</body>
+</html>
