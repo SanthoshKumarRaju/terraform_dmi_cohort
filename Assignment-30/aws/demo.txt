@@ -1,0 +1,1 @@
+This is a demo file for Terraform state locking test
