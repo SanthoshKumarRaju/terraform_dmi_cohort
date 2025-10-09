@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terraform & Harshi Corp Blog</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Source+Code+Pro:wght@300;400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <h2>Terraform<span class="logo-accent">Blog</span></h2>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="#home" class="nav-link">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#terraform-history" class="nav-link">Terraform History</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#harshi-corp" class="nav-link">Harshi Corp</a>
+                </li>
+                <li class="nav-item">
+                    <a href="blog1.html" class="nav-link nav-button">Blog 1</a>
+                </li>
+                <li class="nav-item">
+                    <a href="blog2.html" class="nav-link nav-button">Blog 2</a>
+                </li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1 class="hero-title">
+                    Master Infrastructure as Code with 
+                    <span class="terraform-gradient">Terraform</span>
+                </h1>
+                <p class="hero-subtitle">
+                    Comprehensive guides, tutorials, and best practices for Terraform, 
+                    HCL, and multi-cloud deployments by Harshi Corp
+                </p>
+                <div class="hero-buttons">
+                    <a href="#terraform-history" class="btn btn-primary">Explore History</a>
+                    <a href="blog1.html" class="btn btn-secondary">View Projects</a>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="code-window">
+                    <div class="window-header">
+                        <div class="window-controls">
+                            <span class="control red"></span>
+                            <span class="control yellow"></span>
+                            <span class="control green"></span>
+                        </div>
+                        <span class="window-title">main.tf</span>
+                    </div>
+                    <div class="code-content">
+                        <pre><code class="language-hcl">resource "aws_instance" "web" {
+  ami           = "ami-0c55b159cbfafe1d0"
+  instance_type = "t2.micro"
+
+  tags = {
+    Name = "HarshiCorp-WebServer"
+  }
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Terraform History Section -->
+    <section id="terraform-history" class="section-dark">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Terraform & HCL History</h2>
+                <p class="section-subtitle">The evolution of Infrastructure as Code</p>
+            </div>
+            
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-date">2014</div>
+                    <div class="timeline-content">
+                        <h3>HashiCorp Configuration Language (HCL) Born</h3>
+                        <p>HCL was created as a human-readable configuration language specifically designed for DevOps tools and infrastructure automation.</p>
+                        <div class="timeline-code">
+                            <pre><code># Early HCL syntax example
+variable "region" {
+  default = "us-west-2"
+}</code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-date">2014</div>
+                    <div class="timeline-content">
+                        <h3>Terraform Initial Release</h3>
+                        <p>Terraform v0.1 was released, introducing the concept of infrastructure as code with a declarative configuration language.</p>
+                        <ul class="feature-list">
+                            <li>Declarative configuration syntax</li>
+                            <li>Resource graph building</li>
+                            <li>Plan and apply workflow</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-date">2016</div>
+                    <div class="timeline-content">
+                        <h3>Terraform 0.7 - Major Enhancements</h3>
+                        <p>Introduced modules, remote state, and improved provider ecosystem with AWS, Azure, and Google Cloud support.</p>
+                        <div class="command-example">
+                            <code>terraform init</code>
+                            <span class="command-desc">- Initialize Terraform configuration</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-date">2019</div>
+                    <div class="timeline-content">
+                        <h3>Terraform 0.12 - HCL2 Revolution</h3>
+                        <p>Major language improvements including first-class expressions, rich type system, and template directives.</p>
+                        <div class="timeline-code">
+                            <pre><code># HCL2 with for expressions
+locals {
+  instance_names = [for i in range(3) : "server-${i}"]
+}</code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-date">2021</div>
+                    <div class="timeline-content">
+                        <h3>Terraform Cloud & Enterprise</h3>
+                        <p>Expanded collaboration features, policy as code with Sentinel, and enhanced security controls.</p>
+                        <div class="feature-list">
+                            <div class="feature-item">
+                                <span class="feature-icon">🔒</span>
+                                <span>Remote State Management</span>
+                            </div>
+                            <div class="feature-item">
+                                <span class="feature-icon">🔄</span>
+                                <span>CI/CD Integration</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Harshi Corp Section -->
+    <section id="harshi-corp" class="section-light">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">About Harshi Corp</h2>
+                <p class="section-subtitle">Pioneering Cloud Infrastructure Excellence</p>
+            </div>
+            
+            <div class="company-grid">
+                <div class="company-card">
+                    <div class="card-icon">🚀</div>
+                    <h3>Our Mission</h3>
+                    <p>To simplify cloud infrastructure management through innovative Terraform solutions and best practices.</p>
+                </div>
+                
+                <div class="company-card">
+                    <div class="card-icon">☁️</div>
+                    <h3>Multi-Cloud Expertise</h3>
+                    <p>Specialized in AWS, Azure, and GCP deployments with proven Terraform patterns.</p>
+                </div>
+                
+                <div class="company-card">
+                    <div class="card-icon">🛠️</div>
+                    <h3>Open Source Contributions</h3>
+                    <p>Active contributors to Terraform community modules and best practice documentation.</p>
+                </div>
+            </div>
+
+            <div class="core-values">
+                <h3>Core Values</h3>
+                <div class="values-grid">
+                    <div class="value-item">
+                        <h4>Infrastructure as Code First</h4>
+                        <p>Everything deployable, repeatable, and version controlled.</p>
+                    </div>
+                    <div class="value-item">
+                        <h4>Security by Design</h4>
+                        <p>Security principles embedded in every infrastructure component.</p>
+                    </div>
+                    <div class="value-item">
+                        <h4>Automation Excellence</h4>
+                        <p>Eliminate manual processes through comprehensive automation.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Navigation Section -->
+    <section class="blog-navigation">
+        <div class="container">
+            <div class="navigation-grid">
+                <div class="nav-card blog1-card">
+                    <div class="card-header">
+                        <h3>Blog 1</h3>
+                        <span class="card-badge">2 Projects</span>
+                    </div>
+                    <div class="card-content">
+                        <h4>Foundation Projects</h4>
+                        <ul class="project-list">
+                            <li>Azure Provider: Service Principal Authentication</li>
+                            <li>Multi-Cloud + Multi-Region Deployment</li>
+                        </ul>
+                        <div class="tech-stack">
+                            <span class="tech-tag">Azure</span>
+                            <span class="tech-tag">AWS</span>
+                            <span class="tech-tag">Terraform</span>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <a href="blog1.html" class="btn btn-outline">Explore Blog 1</a>
+                    </div>
+                </div>
+
+                <div class="nav-card blog2-card">
+                    <div class="card-header">
+                        <h3>Blog 2</h3>
+                        <span class="card-badge">3 Projects</span>
+                    </div>
+                    <div class="card-content">
+                        <h4>Advanced Implementations</h4>
+                        <ul class="project-list">
+                            <li>Remote Backends & State Locking</li>
+                            <li>React App with Terraform Workspaces</li>
+                            <li>EpicBook Production Deployment</li>
+                        </ul>
+                        <div class="tech-stack">
+                            <span class="tech-tag">React</span>
+                            <span class="tech-tag">Workspaces</span>
+                            <span class="tech-tag">Production</span>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <a href="blog2.html" class="btn btn-outline">Explore Blog 2</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Terraform Blog</h3>
+                    <p>Master Infrastructure as Code with comprehensive guides and best practices.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#terraform-history">Terraform History</a></li>
+                        <li><a href="#harshi-corp">Harshi Corp</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Projects</h4>
+                    <ul>
+                        <li><a href="blog1.html">Blog 1 Projects</a></li>
+                        <li><a href="blog2.html">Blog 2 Projects</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Harshi Corp. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="assets/js/script.js"></script>
+</body>
+</html>
